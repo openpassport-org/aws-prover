@@ -17,8 +17,14 @@ sudo yum install -y nasm
 sudo yum install -y gmp-devel
 sudo yum install -y openssl-devel
 
-# Install nlohmann-json
-sudo yum install -y nlohmann-json-devel
+# Install nlohmann-json from source
+cd /tmp
+git clone https://github.com/nlohmann/json.git
+cd json
+mkdir build && cd build
+cmake ..
+sudo make install
+cd ../../
 
 # Install additional useful tools
 sudo yum install -y htop # for monitoring CPU/memory usage
