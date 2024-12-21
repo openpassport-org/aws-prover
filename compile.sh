@@ -1,0 +1,2 @@
+cd prove_ecdsa_sha1_secp256r1_256_cpp
+make

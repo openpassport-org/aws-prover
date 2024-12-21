@@ -17,19 +17,12 @@ sudo yum install -y nasm
 sudo yum install -y gmp-devel
 sudo yum install -y openssl-devel
 
+# Install nlohmann-json
+sudo yum install -y nlohmann-json-devel
+
 # Install additional useful tools
 sudo yum install -y htop # for monitoring CPU/memory usage
 sudo yum install -y valgrind # for memory debugging if needed
-
-# Create workspace directory and navigate to the correct folder
-mkdir -p ~/workspace
-cd ~/workspace
-
-# Navigate to the specific directory
-cd prove_ecdsa_sha1_secp256r1_256_cpp || {
-    echo "Error: Could not find prove_ecdsa_sha1_secp256r1_256_cpp directory"
-    exit 1
-}
 
 # Set some environment variables for better performance
 echo 'export MAKEFLAGS="-j$(nproc)"' >> ~/.bashrc # Use all CPU cores for make
