@@ -1,28 +1,25 @@
 #!/bin/bash
 
 # Update system
-sudo apt-get update
-sudo apt-get upgrade -y
+sudo yum update -y
 
 # Install essential build tools and C++ toolchain
-sudo apt-get install -y build-essential cmake git
-sudo apt-get install -y gcc g++ gdb make
-sudo apt-get install -y pkg-config
-sudo apt-get install -y autoconf automake libtool
+sudo yum groupinstall -y "Development Tools"
+sudo yum install -y cmake3 git
+sudo yum install -y gcc gcc-c++ gdb make
+sudo yum install -y pkgconfig
+sudo yum install -y autoconf automake libtool
 
 # Install NASM assembler
-sudo apt-get install -y nasm
+sudo yum install -y nasm
 
 # Install GMP and other math libraries
-sudo apt-get install -y libgmp-dev
-sudo apt-get install -y libssl-dev
-
-# Install nlohmann-json
-sudo apt-get install -y nlohmann-json3-dev
+sudo yum install -y gmp-devel
+sudo yum install -y openssl-devel
 
 # Install additional useful tools
-sudo apt-get install -y htop # for monitoring CPU/memory usage
-sudo apt-get install -y valgrind # for memory debugging if needed
+sudo yum install -y htop # for monitoring CPU/memory usage
+sudo yum install -y valgrind # for memory debugging if needed
 
 # Create workspace directory and navigate to the correct folder
 mkdir -p ~/workspace
@@ -36,6 +33,9 @@ cd prove_ecdsa_sha1_secp256r1_256_cpp || {
 
 # Set some environment variables for better performance
 echo 'export MAKEFLAGS="-j$(nproc)"' >> ~/.bashrc # Use all CPU cores for make
+
+# Create symlink for cmake3 if needed
+sudo ln -sf /usr/bin/cmake3 /usr/bin/cmake
 
 echo "Setup complete! System ready for compilation."
 
